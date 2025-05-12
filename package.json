@@ -1,0 +1,25 @@
+{
+  "name": "aspose-2",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "asposecloud": "^1.9.0",
+    "asposeslidescloud": "^24.12.0",
+    "axios": "^1.9.0",
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2",
+    "nodemon": "^3.1.10",
+    "readline-sync": "^1.4.10",
+    "retry-axios": "^3.1.3"
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create PowerPoint Presentation</title>
+</head>
+<body>
+  <h1>Create PowerPoint Presentation</h1>
+
+  <% if (error) { %>
+    <div style="color: red;"><%= error %></div>
+  <% } %>
+
+  <form id="createForm" action="/create" method="POST" enctype="multipart/form-data">
+    <label>Presentation Name:</label>
+    <input type="text" name="presentationName" placeholder="example.pptx" required />
+
+    <label>Number of Slides:</label>
+    <input type="number" name="slideCount" value="3" min="1" required />
+
+    <label>Upload Logo Image:</label>
+  <input type="file" name="slideImage" accept="image/*" required />
+
+    <button type="submit">Create</button>
+  </form>
+
+  <div id="result" style="display: none;">
+    <h2>Presentation Created!</h2>
+    <a id="downloadLink" target="_blank">Download</a>
+  </div>
+
+  <script>
+    document.getElementById('createForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const response = await fetch('/create', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        form.style.display = 'none';
+        document.getElementById('result').style.display = 'block';
+        const link = document.getElementById('downloadLink');
+        link.href = result.downloadUrl;
+        link.textContent = 'Download ' +
+          new URL(result.downloadUrl).pathname.split('/').pop();
+      } else {
+        alert('Error: ' + result.message);
+      }
+    });
+  </script>
+</body>
+</html>
