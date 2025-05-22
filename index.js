@@ -825,7 +825,7 @@ app.post("/create", upload.single("slideImage"), async (req, res) => {
 
     // Add Logo Logic Added
     // Add default logo if it exists
-    const logoPath = path.join(__dirname, "public", "images", "Xebia_Logo.jpg");
+    const logoPath = path.join(__dirname, "public", "images", "Front_End_Logo.png");
     if (fs.existsSync(logoPath)) {
       const logoBase64 = fs.readFileSync(logoPath, { encoding: "base64" });
 
